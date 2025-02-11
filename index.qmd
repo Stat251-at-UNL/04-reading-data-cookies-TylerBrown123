@@ -11,8 +11,13 @@ output: html_document
 First, read in the CSV data of cookie ingredients. Make sure that your end-result data has appropriate types for each column - these should match the types provided in the documentation in the README.md file.
 
 ```{r}
+library(ggplot2)
+library(tidyverse)
 cookie <- read.csv("choc_chip_cookie_ingredients.csv")
-print(head(cookie))
+print(cookie)
+AR_1_cookie <- filter(cookie, Recipe_Index == "AR_1")
+all_purpose_flour <- filter(cookie, Ingredient == "all purpose flour")
+ounce <- filter(cookie)
 ```
 
 ```{python}
@@ -35,9 +40,9 @@ Exploratory data analysis is the process of getting familiar with your dataset. 
 
 Generate at least 5 questions you might explore using this database of cookie ingredients.
 
-1.  
+1.  How many different recipes are there?
 
-2.  
+2.  Do the recipes that have a different index starter have a largely different average rating?
 
 3.  
 
@@ -56,11 +61,14 @@ Install both packages, and read the package documentation ([R](https://cran.r-pr
 \[Part 1\] Use each package and generate summaries of your data that require the use of at least some non-default options in each package's `skim` function.
 
 ```{r}
-
+library(skimr)
+summary(cookie)
+skim(cookie)
 ```
 
 ```{python}
-
+from skimpy import skim
+skim(cookie)
 ```
 
 \[Part 2\] Write 1-2 sentences about what you can tell from each summary display you generate. Did you discover anything new about the data?
