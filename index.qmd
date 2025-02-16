@@ -62,13 +62,17 @@ Install both packages, and read the package documentation ([R](https://cran.r-pr
 
 ```{r}
 library(skimr)
-summary(cookie)
-skim(cookie)
+library(tidyverse)
+library(ggplot2)
+cookie |>
+  select(where(is.numeric)) |>
+  skim()
 ```
 
 ```{python}
 from skimpy import skim
-skim(cookie)
+numeric_cookie = cookie.select_dtypes(include=['number'])
+skim(numeric_cookie)
 ```
 
 \[Part 2\] Write 1-2 sentences about what you can tell from each summary display you generate. Did you discover anything new about the data?
