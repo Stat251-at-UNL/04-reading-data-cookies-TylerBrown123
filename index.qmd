@@ -111,11 +111,13 @@ cookie_table = cookie_table.sort_values(by="proportion_of_recipes", ascending=Fa
 
 \[Part 2\] Print out a character string that lists all of the ingredients that do not appear in at least 20 recipes.
 ```{r}
-
+ingredient_string <- paste(
+  cookie_table$Ingredient[cookie_table$number_recipes <= 20],
+  collapse = ", ")
 ```
 
 ```{python}
-
+ingredient_string = ", ".join(cookie_table[cookie_table["number_recipes"] < 20]["Ingredient"])
 ```
 
 (Delete this note, but you can include data values inline in markdown text by using backticks, at least in R. For instance, here is R's built in value for pi: `r pi`. Unfortunately, this doesn't work in python using the knitr markdown engine, but you can print the list out in python anyways using a code chunk.)
