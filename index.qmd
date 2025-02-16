@@ -44,11 +44,11 @@ Generate at least 5 questions you might explore using this database of cookie in
 
 2.  Do the recipes that have a different index starter have a largely different average rating?
 
-3.  
+3.  How many recipes have some sort of special ingredient, meaning it is the only recipe where it is used?
 
-4.  
+4.  What are the most used units of measurement?
 
-5.  
+5.  How many ingredients are used in each recipe?
 
 ### Skimming the Data
 
@@ -128,4 +128,20 @@ Using whatever plotting system you are comfortable with in R or python, see if y
 
 \[Part 1\] Create at least one plot (it doesn't have to be pretty) that showcases an interesting facet of the data.
 
+```{r}
+ingredient_count_in_recipes <- cookie |>
+  group_by(Recipe_Index) |>
+  summarise(number_ingredients = n()) |>
+  arrange(desc(number_ingredients))
+
+ggplot(ingredient_count_in_recipes, aes(x = number_ingredients)) +
+  geom_histogram(binwidth = 1) +
+  labs(title = "Ingredient Counts Per Recipe Distribution",
+       x = "Number of Ingredients",
+       y = "Number of Recipes Containing")
+```
+
+
 \[Part 2\] Write 2-3 sentences about what you can learn from that plot and what directions you might want to investigate from here.
+
+From this plot, I can see that most of the recipes have around 10 ingredients, and it seems to be approximately bell shaped meaning the further it gets from 10 in either direction, the less recipes have that many ingredients. To further investigate, I could look at if having 10, or close to 10, ingredients actually corresponds to a good rating. More specifically, do most recipes have 10 ingredients because that is actually what makes the cookie better, or is it for some other reason?
