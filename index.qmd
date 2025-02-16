@@ -73,6 +73,8 @@ skim(cookie)
 
 \[Part 2\] Write 1-2 sentences about what you can tell from each summary display you generate. Did you discover anything new about the data?
 
+From the skim summaries I can see that the ratings are actually really good for most of the cookies (as seen by the quartiles). This is new to me as I saw a good amount of weird ingredients and such so I thought that there would be a lot of cookies that had weird ratings. This could be a result of NAs however so I could look further into this.
+
 ### Generating Tables
 
 Another useful technique for exploratory data analysis is to generate summary tables. You may want to use the `dplyr` package in R (`group_by` or `count` functions), as well as the `groupby` and `count` methods in Pandas. [Python example](https://sparkbyexamples.com/pandas/pandas-groupby-count-examples/), [R example](https://dplyr.tidyverse.org/reference/count.html)
