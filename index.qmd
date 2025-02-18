@@ -14,10 +14,10 @@ First, read in the CSV data of cookie ingredients. Make sure that your end-resul
 library(ggplot2)
 library(tidyverse)
 cookie <- read.csv("choc_chip_cookie_ingredients.csv")
-print(cookie)
 AR_1_cookie <- filter(cookie, Recipe_Index == "AR_1")
 all_purpose_flour <- filter(cookie, Ingredient == "all purpose flour")
 ounce <- filter(cookie)
+print(head(cookie))
 ```
 
 ```{python}
@@ -92,9 +92,11 @@ cookie_table <- cookie |>
   distinct(Recipe_Index, Ingredient) |>
   group_by(Ingredient) |>
   summarise(number_recipes = n()) |>
-  mutate(proportion_of_recipes = number_recipes/209*(100)) |>
+  mutate(proportion_of_recipes = number_recipes/209) |>
   arrange(desc(proportion_of_recipes)) |>
   top_n(20)
+
+print(cookie_table)
   
 ```
 
@@ -108,9 +110,11 @@ cookie_table = (
   .size()
   .reset_index(name="number_recipes")
 )
-cookie_table["proportion_of_recipes"] = (cookie_table["number_recipes"] / 209) * 100
+cookie_table["proportion_of_recipes"] = (cookie_table["number_recipes"] / 209)
 
 cookie_table = cookie_table.sort_values(by="proportion_of_recipes", ascending=False).head(20)
+
+print(cookie_table)
   
 
 ```
@@ -120,13 +124,15 @@ cookie_table = cookie_table.sort_values(by="proportion_of_recipes", ascending=Fa
 ingredient_string <- paste(
   cookie_table$Ingredient[cookie_table$number_recipes <= 20],
   collapse = ", ")
+
+print(ingredient_string)
 ```
 
 ```{python}
 ingredient_string = ", ".join(cookie_table[cookie_table["number_recipes"] < 20]["Ingredient"])
-```
 
-(Delete this note, but you can include data values inline in markdown text by using backticks, at least in R. For instance, here is R's built in value for pi: `r pi`. Unfortunately, this doesn't work in python using the knitr markdown engine, but you can print the list out in python anyways using a code chunk.)
+print(ingredient_string)
+```
 
 ### Visualization
 
